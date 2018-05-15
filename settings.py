@@ -1,5 +1,5 @@
 # Configuraciones del juego
-TITLE = "Jumpy!"
+TITLE = "Juan el Condor"
 WIDTH = 360
 HEIGHT = 480
 FPS = 30
