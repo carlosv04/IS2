@@ -1,7 +1,7 @@
 # Configuraciones del juego
 TITLE = "Juan el Condor"
-WIDTH = 360
-HEIGHT = 480
+WIDTH = 1000
+HEIGHT = 600
 FPS = 30
 
 # Colores
