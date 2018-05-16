@@ -2,8 +2,6 @@ import pygame, sys
 from pygame.locals import *
 from settings import *
 
-colorFondo = (255,255,255)
-
 pygame.init()
 
 ventana = pygame.display.set_mode((WIDTH,HEIGHT))
