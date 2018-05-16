@@ -1,11 +1,13 @@
 import pygame, sys
 from pygame.locals import *
+from settings import *
+
 colorFondo = (255,255,255)
 color2= (120,120,120)
 
 pygame.init()
-ventana = pygame.display.set_mode((1000,600))
-pygame.display.set_caption("Jueguito Grupo 6")
+ventana = pygame.display.set_mode((WIDTH,HEIGHT))
+pygame.display.set_caption(TITLE)
 pygame.draw.rect(ventana, color2, (0,540,1000,600))
 fondo1 = pygame.image.load("imagenes\FONDO1.png")
 
