@@ -4,7 +4,7 @@ import os
 TITLE = "Juan el Condor"
 WIDTH = 1000
 HEIGHT = 600
-FPS = 30
+FPS = 60
 
 # Path de los recursos
 current_path  = os.path.dirname(__file__) # Path de donde esta ubicado el settings.py
