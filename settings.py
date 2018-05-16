@@ -6,6 +6,10 @@ WIDTH = 1000
 HEIGHT = 600
 FPS = 60
 
+# Propiedades del jugador
+PLAYER_ACC = 0.5
+PLAYER_FRICTION = -0.12
+
 # Path de los recursos
 current_path  = os.path.dirname(__file__) # Path de donde esta ubicado el settings.py
 imagenes_path = os.path.join(current_path, "imagenes") # Path de la carpeta "imagenes"
