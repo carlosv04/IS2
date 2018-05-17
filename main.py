@@ -32,6 +32,8 @@ class Game:
             self.events()
             self.update()
             self.draw()
+        global pagina
+        pagina = 3
 
     def update(self):
         # Game Loop - Update
@@ -64,8 +66,6 @@ class Game:
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
         pg.display.flip()
-        global pagina
-        pagina = 3
 
     def on_pausa(self):
         if not self.running:
@@ -88,7 +88,7 @@ class Game:
         xmax=720
         ymax=500
         pg.display.flip()
-        global pagina 
+        global pagina
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -123,7 +123,7 @@ class Game:
         #self.pagina = 1
         self.coger_mouse(xmin,xmax,ymin,ymax)
         #solo podemos ir a la pagina Main Menu
-        global pagina 
+        global pagina
         pagina = 1
 
     def show_main_menu(self):
@@ -180,7 +180,7 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
-    
+
 
 g = Game()
 g.show_start_screen()
