@@ -36,6 +36,11 @@ class Game:
         self.all_sprites.update()
 
     def events(self):
+        image_pausa = pg.image.load(boton_pausa)
+        x1 = 930
+        x2 = x1 + image_pausa.get_rect().width
+        y1 = 70
+        y2 = y1 + image_pausa.get_rect().height
         # Game Loop - events
         for event in pg.event.get():
             # check for closing window
@@ -43,6 +48,11 @@ class Game:
                 if self.playing:
                     self.playing = False
                 self.running = False
+            if event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    x,y = pg.mouse.get_pos()
+                    if x >= x1 and x <= x2 and y >= y1 and y <= y2:
+                        self.playing = False
 
     def draw(self):
         # Game Loop - draw
@@ -124,8 +134,9 @@ g.show_start_screen()
 while g.running:
     g.show_main_menu()
     g.new()
+    g.show_main_menu()
     g.show_go_screen()
-    
-    
+
+
 
 pg.quit()
