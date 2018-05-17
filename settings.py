@@ -18,6 +18,7 @@ fondo_mapa1   = os.path.join(imagenes_path, "mapa1.png")
 fondo_mapa2   = os.path.join(imagenes_path, "mapa2.png") 
 boton_pausa   = os.path.join(imagenes_path, "pause.png")
 flecha_D      = os.path.join(imagenes_path, "flechaD.png")
+flecha_I     = os.path.join(imagenes_path, "flechaI.png")
 suelo1_path   = os.path.join(imagenes_path, "suelo.png") # Path del suelo
 
 # Colores

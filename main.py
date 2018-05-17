@@ -149,6 +149,7 @@ class Game:
         self.draw_text("Chan Chan", 48, WHITE, 1490,120)
         #flechas
         self.screen.blit(pg.image.load(flecha_D),(920,180))
+        self.screen.blit(pg.image.load(flecha_I),(15,180))
 
         xmin=100
         ymin=100
