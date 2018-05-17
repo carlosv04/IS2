@@ -13,6 +13,7 @@ class Game:
         self.clock = pg.time.Clock()
         self.running = True
         self.font_name = pg.font.match_font(FONT_NAME)
+        self.pagina = 0
 
     def new(self):
         # start a new game
@@ -57,12 +58,33 @@ class Game:
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
         self.draw_text("Iniciar", 48, WHITE, 500,440)
+        xmin=280
+        ymin=435
+        xmax=720
+        ymax=500
         pg.display.flip()
-        self.coger_mouse()
+        self.pagina = 2
+        self.coger_mouse(xmin,xmax,ymin,ymax)
+
+    def show_main_menu(self):
+        if not self.running:
+            return
+
+        self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
+        pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
+        self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
+        xmin=100
+        ymin=100
+        xmax=880
+        ymax=350
+        pg.display.flip()
+        self.pagina = 3
+        self.coger_mouse(xmin,xmax,ymin,ymax)
 
     def show_go_screen(self):
         # game over/continue
         pass
+
     def wait_for_a_key(self):
         waiting = True
         while waiting:
@@ -74,7 +96,7 @@ class Game:
                 if event.type == pg.KEYUP:
                     waiting = False
 
-    def coger_mouse(self):
+    def coger_mouse(self,x1,x2,y1,y2):
         waiting = True
         while waiting:
             self.clock.tick(FPS)
@@ -85,7 +107,7 @@ class Game:
                 if event.type == pg.MOUSEBUTTONDOWN:
                     if event.button == 1:
                         x,y = pg.mouse.get_pos()
-                        if x >= 280 and x <= 720 and y >= 435 and y <= 500:
+                        if x >= x1 and x <= x2 and y >= y1 and y <= y2:
                             waiting = False
 
     def draw_text(self, text, size, color, x, y):
@@ -98,8 +120,8 @@ class Game:
 g = Game()
 g.show_start_screen()
 while g.running:
+    g.show_main_menu()
     g.new()
     g.show_go_screen()
-    g.coger_mouse()
 
 pg.quit()
