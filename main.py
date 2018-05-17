@@ -76,6 +76,12 @@ class Game:
 
         pg.draw.rect(self.screen,(255,93,85),(400,190, 200 ,50))
         self.draw_text("Resumen", 30, WHITE, 500,200)
+        pg.draw.rect(self.screen,(255,93,85),(400,260, 200 ,50))
+        self.draw_text("Reiniciar", 30, WHITE, 500,270)
+        pg.draw.rect(self.screen,(255,93,85),(400,330, 200 ,50))
+        self.draw_text("Menu Mapas", 30, WHITE, 500,340)
+        pg.draw.rect(self.screen,(255,93,85),(400,400, 200 ,50))
+        self.draw_text("Salir", 30, WHITE, 500,410)
         xmin=280
         ymin=435
         xmax=720
