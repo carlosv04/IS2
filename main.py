@@ -3,6 +3,8 @@ import random
 from settings import *
 from sprites import *
 
+pagina = 0
+
 class Game:
     def __init__(self):
         # initialize game window, etc
@@ -62,6 +64,28 @@ class Game:
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
         pg.display.flip()
+        global pagina
+        pagina = 3
+
+    def on_pausa(self):
+        if not self.running:
+            return
+
+        self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
+        self.draw_text("Menú de Pausa", 60, BLACK, 500,60)
+
+        pg.draw.rect(self.screen,(255,93,85),(400,190, 200 ,50))
+        self.draw_text("Resumen", 30, WHITE, 500,200)
+        xmin=280
+        ymin=435
+        xmax=720
+        ymax=500
+        pg.display.flip()
+        self.pagina = 1
+        self.coger_mouse(xmin,xmax,ymin,ymax)
+        #solo podemos ir a la pagina Main Menu
+        global pagina 
+        pagina = 1
 
     def show_start_screen(self):
         if not self.running:
@@ -77,6 +101,9 @@ class Game:
         pg.display.flip()
         self.pagina = 1
         self.coger_mouse(xmin,xmax,ymin,ymax)
+        #solo podemos ir a la pagina Main Menu
+        global pagina 
+        pagina = 1
 
     def show_main_menu(self):
         if not self.running:
@@ -92,6 +119,10 @@ class Game:
         pg.display.flip()
         self.pagina = 2
         self.coger_mouse(xmin,xmax,ymin,ymax)
+        #por el momento solo iremos a la pagina del juego
+        global pagina
+        pagina = 2
+
 
     def show_go_screen(self):
         # game over/continue
@@ -128,14 +159,20 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
+    
 
 g = Game()
 g.show_start_screen()
 while g.running:
-    g.show_main_menu()
-    g.new()
-    g.show_main_menu()
-    g.show_go_screen()
+    if pagina == 1:
+        g.show_main_menu()
+    elif pagina == 2:
+        g.new()
+    elif pagina == 3:
+        g.on_pausa()
+
+#    g.show_main_menu()
+#    g.show_go_screen()
 
 
 
