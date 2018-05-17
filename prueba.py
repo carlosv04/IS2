@@ -7,8 +7,9 @@ pygame.init()
 ventana = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption(TITLE)
 
-fondo1 = pygame.image.load("imagenes\FONDO1.png")
-suelo1 = pygame.image.load("imagenes\suelo.png")
+=======
+fondo1 = pygame.image.load(fondo1_path)
+suelo1 = pygame.image.load(suelo1_path)
 
 while True:
 	ventana.blit(fondo1,(0,-40))
@@ -20,4 +21,3 @@ while True:
 			pygame.quit()
 			sys.exit()
 	pygame.display.update()
-	
