@@ -82,16 +82,31 @@ class Game:
         self.draw_text("Menu Mapas", 30, WHITE, 500,340)
         pg.draw.rect(self.screen,(255,93,85),(400,400, 200 ,50))
         self.draw_text("Salir", 30, WHITE, 500,410)
+
         xmin=280
         ymin=435
         xmax=720
         ymax=500
         pg.display.flip()
-        self.pagina = 1
-        self.coger_mouse(xmin,xmax,ymin,ymax)
-        #solo podemos ir a la pagina Main Menu
         global pagina 
-        pagina = 1
+
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                self.running = False
+            if event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    x,y = pg.mouse.get_pos()
+                    if x >= 400 and x <= 600 and y >= 190 and y <= 240:
+                        pagina = 2
+                    elif x >= 400 and x <= 600 and y >= 260 and y <= 310:
+                        pagina = 2
+                    elif x >= 400 and x <= 600 and y >= 330 and y <= 380:
+                        pagina = 1
+                    elif x >= 400 and x <= 600 and y >= 400 and y <= 450:
+                        self.running = False
+        #self.pagina = 1
+        #self.coger_mouse(xmin,xmax,ymin,ymax)
+        #solo podemos ir a la pagina Main Menu
 
     def show_start_screen(self):
         if not self.running:
@@ -105,7 +120,7 @@ class Game:
         xmax=720
         ymax=500
         pg.display.flip()
-        self.pagina = 1
+        #self.pagina = 1
         self.coger_mouse(xmin,xmax,ymin,ymax)
         #solo podemos ir a la pagina Main Menu
         global pagina 
@@ -123,7 +138,7 @@ class Game:
         xmax=880
         ymax=350
         pg.display.flip()
-        self.pagina = 2
+        #self.pagina = 2
         self.coger_mouse(xmin,xmax,ymin,ymax)
         #por el momento solo iremos a la pagina del juego
         global pagina
