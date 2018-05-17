@@ -97,16 +97,17 @@ class Game:
                 if event.button == 1:
                     x,y = pg.mouse.get_pos()
                     if x >= 400 and x <= 600 and y >= 190 and y <= 240:
+                        #va a la pagina del juego
                         pagina = 2
                     elif x >= 400 and x <= 600 and y >= 260 and y <= 310:
+                        #reinicia la partida
                         pagina = 2
                     elif x >= 400 and x <= 600 and y >= 330 and y <= 380:
+                        #va al menu de mapas
                         pagina = 1
                     elif x >= 400 and x <= 600 and y >= 400 and y <= 450:
+                        #sale del juego
                         self.running = False
-        #self.pagina = 1
-        #self.coger_mouse(xmin,xmax,ymin,ymax)
-        #solo podemos ir a la pagina Main Menu
 
     def show_start_screen(self):
         if not self.running:
@@ -129,20 +130,52 @@ class Game:
     def show_main_menu(self):
         if not self.running:
             return
+        fondo_mapas = fondo_mapa1
+        posx = 1000
+        tam = 780
 
-        self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
+        self.screen.blit(pg.image.load(fondo_mapas),(0,0))
         pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
         self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
+        #mapa 2
+        pg.draw.rect(self.screen,(203,232,186),(1100,100, 780 ,250))
+        self.draw_text("Chan Chan", 48, WHITE, 1490,120)
+        #flechas
+        self.screen.blit(pg.image.load(flecha_D),(920,180))
+
         xmin=100
         ymin=100
         xmax=880
         ymax=350
         pg.display.flip()
+        sw= True
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                self.running = False
+            if event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    x,y = pg.mouse.get_pos()
+                    if x >= 920 and x <= 984 and y >= 180 and y <= 244:
+                        '''while sw:
+
+                            fondo_mapas = fondo_mapa2
+                            pg.draw.rect(self.screen,(203,232,186),(posx,100, tam ,250))
+                            posx -= 5
+                            tam -=5
+                            print(posx)
+                            if posx < 0:
+                                sw = False
+                            pg.display.update()'''
+                    else:
+                        self.coger_mouse(xmin,xmax,ymin,ymax)
+                        #por el momento solo iremos a la pagina del juego
+                        global pagina
+                        pagina = 2
         #self.pagina = 2
-        self.coger_mouse(xmin,xmax,ymin,ymax)
+        #self.coger_mouse(xmin,xmax,ymin,ymax)
         #por el momento solo iremos a la pagina del juego
-        global pagina
-        pagina = 2
+        #global pagina
+        #pagina = 2
 
 
     def show_go_screen(self):
