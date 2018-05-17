@@ -4,6 +4,7 @@ from settings import *
 from sprites import *
 
 pagina = 0
+use_pos_saved = True
 
 class Game:
     def __init__(self):
@@ -15,12 +16,15 @@ class Game:
         self.clock = pg.time.Clock()
         self.running = True
         self.font_name = pg.font.match_font(FONT_NAME)
-        self.pagina = 0
 
     def new(self):
         # start a new game
         self.all_sprites = pg.sprite.Group()
         self.player = Player()
+        global use_pos_saved
+        global pos_saved
+        if use_pos_saved:
+            self.player.pos = pos_saved
         self.all_sprites.add(self.player)
         self.run()
 
@@ -89,6 +93,7 @@ class Game:
         ymax=500
         pg.display.flip()
         global pagina
+        global use_pos_saved
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -98,8 +103,10 @@ class Game:
                     x,y = pg.mouse.get_pos()
                     if x >= 400 and x <= 600 and y >= 190 and y <= 240:
                         pagina = 2
+                        use_pos_saved = True
                     elif x >= 400 and x <= 600 and y >= 260 and y <= 310:
                         pagina = 2
+                        use_pos_saved = False
                     elif x >= 400 and x <= 600 and y >= 330 and y <= 380:
                         pagina = 1
                     elif x >= 400 and x <= 600 and y >= 400 and y <= 450:
