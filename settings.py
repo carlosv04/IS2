@@ -5,7 +5,7 @@ TITLE = "Juan el Condor"
 WIDTH = 1000
 HEIGHT = 600
 FPS = 60
-
+FONT_NAME = 'arial'
 # Propiedades del jugador
 PLAYER_ACC = 0.5
 PLAYER_FRICTION = -0.12

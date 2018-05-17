@@ -7,7 +7,7 @@ pygame.init()
 ventana = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption(TITLE)
 
-=======
+
 fondo1 = pygame.image.load(fondo1_path)
 suelo1 = pygame.image.load(suelo1_path)
 
