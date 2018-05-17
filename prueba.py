@@ -9,6 +9,7 @@ pygame.display.set_caption(TITLE)
 
 fondo1 = pygame.image.load("imagenes\FONDO1.png")
 suelo1 = pygame.image.load("imagenes\suelo.png")
+
 while True:
 	ventana.blit(fondo1,(0,-40))
 	ventana.blit(suelo1,(0,560))
