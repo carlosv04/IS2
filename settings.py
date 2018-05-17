@@ -15,6 +15,7 @@ current_path  = os.path.dirname(__file__) # Path de donde esta ubicado el settin
 imagenes_path = os.path.join(current_path, "imagenes") # Path de la carpeta "imagenes"
 fondo1_path   = os.path.join(imagenes_path, "FONDO1.png")# Path del fondo1
 fondo_mapa1   = os.path.join(imagenes_path, "mapa1.png") 
+boton_pausa   = os.path.join(imagenes_path, "pause.png") 
 suelo1_path   = os.path.join(imagenes_path, "suelo.png") # Path del suelo
 
 # Colores

@@ -46,7 +46,9 @@ class Game:
 
     def draw(self):
         # Game Loop - draw
-        self.screen.fill(BLACK)
+        self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
+        self.screen.blit(pg.image.load(suelo1_path),(0,560))
+        self.screen.blit(pg.image.load(boton_pausa),(930,70))
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
         pg.display.flip()
@@ -63,7 +65,7 @@ class Game:
         xmax=720
         ymax=500
         pg.display.flip()
-        self.pagina = 2
+        self.pagina = 1
         self.coger_mouse(xmin,xmax,ymin,ymax)
 
     def show_main_menu(self):
@@ -78,7 +80,7 @@ class Game:
         xmax=880
         ymax=350
         pg.display.flip()
-        self.pagina = 3
+        self.pagina = 2
         self.coger_mouse(xmin,xmax,ymin,ymax)
 
     def show_go_screen(self):
@@ -123,5 +125,7 @@ while g.running:
     g.show_main_menu()
     g.new()
     g.show_go_screen()
+    
+    
 
 pg.quit()
