@@ -174,11 +174,11 @@ class Game:
                             if posx < 0:
                                 sw = False
                             pg.display.update()'''
-                    else:
-                        self.coger_mouse(xmin,xmax,ymin,ymax)
-                        #por el momento solo iremos a la pagina del juego
-                        global pagina
-                        pagina = 2
+                    
+                    self.coger_mouse(xmin,xmax,ymin,ymax)
+                    #por el momento solo iremos a la pagina del juego
+                    global pagina
+                    pagina = 2
         #self.pagina = 2
         #self.coger_mouse(xmin,xmax,ymin,ymax)
         #por el momento solo iremos a la pagina del juego
