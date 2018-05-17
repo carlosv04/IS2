@@ -4,6 +4,7 @@ from settings import *
 from sprites import *
 
 pagina = 0
+use_pos_saved = True
 
 class Game:
     def __init__(self):
@@ -15,12 +16,15 @@ class Game:
         self.clock = pg.time.Clock()
         self.running = True
         self.font_name = pg.font.match_font(FONT_NAME)
-        self.pagina = 0
 
     def new(self):
         # start a new game
         self.all_sprites = pg.sprite.Group()
         self.player = Player()
+        global use_pos_saved
+        global pos_saved
+        if use_pos_saved:
+            self.player.pos = pos_saved
         self.all_sprites.add(self.player)
         self.run()
 
@@ -32,6 +36,8 @@ class Game:
             self.events()
             self.update()
             self.draw()
+        global pagina
+        pagina = 3
 
     def update(self):
         # Game Loop - Update
@@ -64,8 +70,6 @@ class Game:
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
         pg.display.flip()
-        global pagina
-        pagina = 3
 
     def on_pausa(self):
         if not self.running:
@@ -88,7 +92,8 @@ class Game:
         xmax=720
         ymax=500
         pg.display.flip()
-        global pagina 
+        global pagina
+        global use_pos_saved
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -99,9 +104,11 @@ class Game:
                     if x >= 400 and x <= 600 and y >= 190 and y <= 240:
                         #va a la pagina del juego
                         pagina = 2
+                        use_pos_saved = True
                     elif x >= 400 and x <= 600 and y >= 260 and y <= 310:
                         #reinicia la partida
                         pagina = 2
+                        use_pos_saved = False
                     elif x >= 400 and x <= 600 and y >= 330 and y <= 380:
                         #va al menu de mapas
                         pagina = 1
@@ -124,7 +131,7 @@ class Game:
         #self.pagina = 1
         self.coger_mouse(xmin,xmax,ymin,ymax)
         #solo podemos ir a la pagina Main Menu
-        global pagina 
+        global pagina
         pagina = 1
 
     def show_main_menu(self):
@@ -213,7 +220,7 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
-    
+
 
 g = Game()
 g.show_start_screen()
