@@ -35,7 +35,8 @@ class Player(pg.sprite.Sprite):
 
         global pos_saved
         pos_saved = self.pos
-
+        #(x1,y1)= pos_saved
+        #print (x1)
         #Para que no se salga de la pantalla
         if self.pos.x > WIDTH:
             self.pos.x = 0
