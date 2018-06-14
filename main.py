@@ -119,20 +119,17 @@ class Game:
             xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
-<<<<<<< HEAD
-        pg.draw.rect(self.screen,(4, 56, 255),(500,posiiin, 25 ,25))
-        
+  
 
 
 
 
         # *after* drawing everything, flip the display 
-=======
+
         #pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
         #if player.pos.x > 500 && player.pos.x < 525 &&
         # *after* drawing everything, flip the display
->>>>>>> 79c1eded45dafd26e209fd79a1e9782bbd229204
-        pg.display.flip()
+
 
     def on_pausa(self):
         if not self.running:
