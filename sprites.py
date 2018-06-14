@@ -3,7 +3,7 @@ from settings import *
 
 vec = pg.math.Vector2
 
-pos_saved = vec(50, 540)
+pos_saved = vec(40, HEIGHT-40)
 
 class Player(pg.sprite.Sprite):
     def __init__(self):
@@ -11,12 +11,15 @@ class Player(pg.sprite.Sprite):
         self.image = pg.Surface((30,40))
         self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
-        self.pos = vec(50, 540)
-        self.vel = vec(6,0)
+        self.pos = vec(40, HEIGHT-40)
+        self.vel = vec(8,0)
         self.acc = vec(0,0)
 
+    def jump(self):
+        self.vel.y = -20
+
     def update(self):
-        self.acc = vec(0,0)
+        self.acc = vec(0,PLAYER_GRAVITY)
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT]:
             self.acc.x = -PLAYER_ACC
@@ -24,11 +27,11 @@ class Player(pg.sprite.Sprite):
             self.acc.x = PLAYER_ACC
 
         # Se aplica la fricción
-        self.acc += self.vel * PLAYER_FRICTION
+        #self.acc.x += self.vel * PLAYER_FRICTION
         #Ecuaciones para el movimiento
-        #self.vel += self.acc
+        self.vel += self.acc
         #self.pos += self.vel + 0.5 * self.acc
-        self.pos += self.vel
+        self.pos += self.vel + 0.5 * self.acc
 
         global pos_saved
         pos_saved = self.pos
@@ -39,4 +42,13 @@ class Player(pg.sprite.Sprite):
         if self.pos.x <0:
             self.pos.x = WIDTH
 
-        self.rect.center = self.pos
+        self.rect.midbottom = self.pos
+
+class Platform(pg.sprite.Sprite):
+    def __init__(self, x, y, w, h):
+        pg.sprite.Sprite.__init__(self)
+        self.image = pg.Surface((w,h))
+        self.image.fill(GREEN)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
