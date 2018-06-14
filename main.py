@@ -81,7 +81,12 @@ class Game:
 
     def draw(self):
         global pos_saved
+        global monedas
         (xa,ya)= pos_saved
+        #print(xa)
+        if xa == 488:
+            monedas = 1
+            print("comio")
         # Game Loop - draw
         self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
@@ -93,6 +98,8 @@ class Game:
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
         pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
+
+
 
         # *after* drawing everything, flip the display 
         pg.display.flip()
