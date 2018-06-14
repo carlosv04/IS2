@@ -11,6 +11,12 @@ PLAYER_ACC = 0.5
 PLAYER_FRICTION = -0.12
 PLAYER_GRAVITY = 1.5
 
+# Plataformas iniciales
+PLATFORM_LIST = [(0, HEIGHT-40, WIDTH, 40),
+                (300, HEIGHT*3/4, 100, 20),
+                (450, HEIGHT*3/4-100, 100, 20),
+                (600, HEIGHT*3/4-200, 100, 20)]
+
 # Path de los recursos
 current_path  = os.path.dirname(__file__) # Path de donde esta ubicado el settings.py
 imagenes_path = os.path.join(current_path, "imagenes") # Path de la carpeta "imagenes"

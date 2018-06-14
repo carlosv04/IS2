@@ -6,7 +6,8 @@ vec = pg.math.Vector2
 pos_saved = vec(40, HEIGHT-40)
 
 class Player(pg.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, game):
+        self.game = game
         pg.sprite.Sprite.__init__(self)
         self.image = pg.Surface((30,40))
         self.image.fill(YELLOW)
@@ -16,7 +17,12 @@ class Player(pg.sprite.Sprite):
         self.acc = vec(0,0)
 
     def jump(self):
-        self.vel.y = -20
+#Verificacion si es que ha tocado el piso para que se le permita saltar denuevo
+        self.rect.x += 1
+        hits = pg.sprite.spritecollide(self, self.game.platforms, False)
+        self.rect.x -= 1
+        if hits:
+            self.vel.y = -20
 
     def update(self):
         self.acc = vec(0,PLAYER_GRAVITY)
