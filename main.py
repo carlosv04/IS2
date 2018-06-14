@@ -22,6 +22,7 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.player = Player()
+
         global use_pos_saved
         global pos_saved
         if use_pos_saved:
@@ -81,6 +82,7 @@ class Game:
         self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
         self.screen.blit(pg.image.load(boton_pausa),(930,70))
+        pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
         pg.display.flip()
