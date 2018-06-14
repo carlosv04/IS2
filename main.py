@@ -20,12 +20,19 @@ class Game:
     def new(self):
         # start a new game
         self.all_sprites = pg.sprite.Group()
+        self.platforms = pg.sprite.Group()
         self.player = Player()
         global use_pos_saved
         global pos_saved
         if use_pos_saved:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
+        p1 = Platform(0, HEIGHT-40, WIDTH, 40)
+        self.all_sprites.add(p1)
+        self.platforms.add(p1)
+        p2 = Platform(WIDTH/2-50, HEIGHT*3/4, 100, 20)
+        self.all_sprites.add(p2)
+        self.platforms.add(p2)
         self.run()
 
     def run(self):
@@ -42,6 +49,10 @@ class Game:
     def update(self):
         # Game Loop - Update
         self.all_sprites.update()
+        hits = pg.sprite.spritecollide(self.player, self.platforms, False)
+        if hits:
+            self.player.pos.y = hits[0].rect.top
+            self.player.vel.y = 0
 
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
@@ -61,6 +72,9 @@ class Game:
                     x,y = pg.mouse.get_pos()
                     if x >= x1 and x <= x2 and y >= y1 and y <= y2:
                         self.playing = False
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_SPACE:
+                    self.player.jump()
 
     def draw(self):
         # Game Loop - draw
@@ -174,7 +188,7 @@ class Game:
                             if posx < 0:
                                 sw = False
                             pg.display.update()'''
-                    
+
                     self.coger_mouse(xmin,xmax,ymin,ymax)
                     #por el momento solo iremos a la pagina del juego
                     global pagina
