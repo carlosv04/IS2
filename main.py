@@ -24,6 +24,7 @@ class Game:
         self.player = Player(self)
         global use_pos_saved
         global pos_saved
+
         if use_pos_saved:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
@@ -78,10 +79,17 @@ class Game:
                     self.player.jump()
 
     def draw(self):
+        global pos_saved
+        (xa,ya)= pos_saved
         # Game Loop - draw
         self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
         self.screen.blit(pg.image.load(boton_pausa),(930,70))
+        pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
+        #print(xa)
+        if xa >800:
+            xa=800
+        pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
         pg.display.flip()
