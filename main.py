@@ -5,6 +5,7 @@ from sprites import *
 
 pagina = 0
 use_pos_saved = True
+global monedas
 
 class Game:
     def __init__(self):
@@ -91,7 +92,9 @@ class Game:
             xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
-        # *after* drawing everything, flip the display
+        pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
+
+        # *after* drawing everything, flip the display 
         pg.display.flip()
 
     def on_pausa(self):
