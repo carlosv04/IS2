@@ -83,9 +83,12 @@ class Game:
         global pos_saved
         global monedas
         (xa,ya)= pos_saved
-        #print(xa)
-        if xa == 488:
+        posiiin = 525
+
+        #print(ya)
+        if xa == 488 and ya == 560:
             monedas = 1
+            posiiin = 800
             print("comio")
         # Game Loop - draw
         self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
@@ -97,7 +100,9 @@ class Game:
             xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
-        pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
+        pg.draw.rect(self.screen,(4, 56, 255),(500,posiiin, 25 ,25))
+        
+
 
 
 
