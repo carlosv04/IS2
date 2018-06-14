@@ -17,6 +17,8 @@ PLATFORM_LIST = [(0, HEIGHT-40, WIDTH, 40),
                 (450, HEIGHT*3/4-100, 100, 20),
                 (600, HEIGHT*3/4-200, 100, 20)]
 
+COINS_LIST = [(500, 525, 25, 25)]
+
 # Path de los recursos
 current_path  = os.path.dirname(__file__) # Path de donde esta ubicado el settings.py
 imagenes_path = os.path.join(current_path, "imagenes") # Path de la carpeta "imagenes"

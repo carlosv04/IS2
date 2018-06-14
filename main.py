@@ -22,6 +22,7 @@ class Game:
         # start a new game
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
+        self.coins = pg.sprite.Group()
         self.player = Player(self)
         global use_pos_saved
         global pos_saved
@@ -29,11 +30,17 @@ class Game:
         if use_pos_saved:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
-        p1 = Platform(0, HEIGHT-40, WIDTH, 40)
+
         for plat in PLATFORM_LIST:
             p = Platform(*plat)
             self.all_sprites.add(p)
             self.platforms.add(p)
+
+        for coin in COINS_LIST:
+            c = Coin(*coin)
+            self.all_sprites.add(c)
+            self.coins.add(c)
+
         self.run()
 
     def run(self):
@@ -56,7 +63,9 @@ class Game:
             if hits:
                 self.player.pos.y = hits[0].rect.top
                 self.player.vel.y = 0
-
+        hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
+        if hitsCoins:
+            hitsCoins[0].kill()
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
         x1 = 930
@@ -92,9 +101,9 @@ class Game:
             xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
-        pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
-
-        # *after* drawing everything, flip the display 
+        #pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
+        #if player.pos.x > 500 && player.pos.x < 525 &&
+        # *after* drawing everything, flip the display
         pg.display.flip()
 
     def on_pausa(self):
