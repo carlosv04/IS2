@@ -45,7 +45,7 @@ class Game:
             l = Letter(*letter)
             self.all_sprites.add(l)
             self.letters.add(l)
-
+        pg.mixer.Sound.play(pg.mixer.Sound(sonido_fondo))
         self.run()
 
     def run(self):
@@ -75,7 +75,7 @@ class Game:
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
         if hitsLetters:
             hitsLetters[0].kill()
-            pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
+            pg.mixer.Sound.play(pg.mixer.Sound(sonido_letter))
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
         x1 = 930
@@ -102,13 +102,6 @@ class Game:
         global pos_saved
         global monedas
         (xa,ya)= pos_saved
-        posiiin = 525
-
-        #print(ya)
-        if xa == 488 and ya == 560:
-            monedas = 1
-            posiiin = 800
-            print("comio")
         # Game Loop - draw
         self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
@@ -119,17 +112,11 @@ class Game:
             xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
-  
-
-
-
-
         # *after* drawing everything, flip the display 
-
         #pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
         #if player.pos.x > 500 && player.pos.x < 525 &&
         # *after* drawing everything, flip the display
-
+        pg.display.flip()
 
     def on_pausa(self):
         if not self.running:

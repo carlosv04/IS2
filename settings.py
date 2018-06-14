@@ -17,7 +17,8 @@ PLATFORM_LIST = [(0, HEIGHT-40, WIDTH, 40),
                 (450, HEIGHT*3/4-100, 100, 20),
                 (600, HEIGHT*3/4-200, 100, 20)]
 
-COINS_LIST = [(500, 525, 25, 25)]
+COINS_LIST = [(500, 525, 25, 25),
+			(700, 525, 25, 25)]
 
 LETTERS_LIST = [(600, 525, 25, 25)]
 
@@ -33,6 +34,9 @@ flecha_D      = os.path.join(imagenes_path, "flechaD.png")
 flecha_I     = os.path.join(imagenes_path, "flechaI.png")
 suelo1_path   = os.path.join(imagenes_path, "suelo.png") # Path del suelo
 sonido_coin = os.path.join(sound_path, "soundCoin.wav")
+sonido_letter = os.path.join(sound_path, "soundLetter.wav")
+sonido_fondo = os.path.join(sound_path, "mp.wav")
+moneda_img   = os.path.join(imagenes_path, "moneda1.jpg")
 
 # Colores
 WHITE = (255, 255, 255)
