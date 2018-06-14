@@ -24,6 +24,7 @@ LETTERS_LIST = [(600, 525, 25, 25)]
 # Path de los recursos
 current_path  = os.path.dirname(__file__) # Path de donde esta ubicado el settings.py
 imagenes_path = os.path.join(current_path, "imagenes") # Path de la carpeta "imagenes"
+sound_path = os.path.join(current_path, "sounds")
 fondo1_path   = os.path.join(imagenes_path, "FONDO1.png")# Path del fondo1
 fondo_mapa1   = os.path.join(imagenes_path, "mapa1.png")
 fondo_mapa2   = os.path.join(imagenes_path, "mapa2.png")
@@ -31,6 +32,7 @@ boton_pausa   = os.path.join(imagenes_path, "pause.png")
 flecha_D      = os.path.join(imagenes_path, "flechaD.png")
 flecha_I     = os.path.join(imagenes_path, "flechaI.png")
 suelo1_path   = os.path.join(imagenes_path, "suelo.png") # Path del suelo
+sonido_coin = os.path.join(sound_path, "soundCoin.wav")
 
 # Colores
 WHITE = (255, 255, 255)

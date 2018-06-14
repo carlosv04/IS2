@@ -72,8 +72,10 @@ class Game:
         hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
         if hitsCoins:
             hitsCoins[0].kill()
+            pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
         if hitsLetters:
             hitsLetters[0].kill()
+            pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
         x1 = 930
