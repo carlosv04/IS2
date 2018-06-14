@@ -22,8 +22,7 @@ class Game:
         # start a new game
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
-        self.player = Player()
-
+        self.player = Player(self)
         global use_pos_saved
         global pos_saved
 
@@ -31,11 +30,10 @@ class Game:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
         p1 = Platform(0, HEIGHT-40, WIDTH, 40)
-        self.all_sprites.add(p1)
-        self.platforms.add(p1)
-        p2 = Platform(WIDTH/2-50, HEIGHT*3/4, 100, 20)
-        self.all_sprites.add(p2)
-        self.platforms.add(p2)
+        for plat in PLATFORM_LIST:
+            p = Platform(*plat)
+            self.all_sprites.add(p)
+            self.platforms.add(p)
         self.run()
 
     def run(self):
@@ -52,10 +50,12 @@ class Game:
     def update(self):
         # Game Loop - Update
         self.all_sprites.update()
-        hits = pg.sprite.spritecollide(self.player, self.platforms, False)
-        if hits:
-            self.player.pos.y = hits[0].rect.top
-            self.player.vel.y = 0
+        # Verificacion si el jugador ha tocado la plataform - solo mientras cae
+        if self.player.vel.y > 0:
+            hits = pg.sprite.spritecollide(self.player, self.platforms, False)
+            if hits:
+                self.player.pos.y = hits[0].rect.top
+                self.player.vel.y = 0
 
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
