@@ -5,7 +5,6 @@ from sprites import *
 
 pagina = 0
 use_pos_saved = True
-global monedas
 
 class Game:
     def __init__(self):
@@ -23,6 +22,7 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.coins = pg.sprite.Group()
+        self.letters = pg.sprite.Group()
         self.player = Player(self)
         global use_pos_saved
         global pos_saved
@@ -40,6 +40,11 @@ class Game:
             c = Coin(*coin)
             self.all_sprites.add(c)
             self.coins.add(c)
+
+        for letter in LETTERS_LIST:
+            l = Letter(*letter)
+            self.all_sprites.add(l)
+            self.letters.add(l)
 
         self.run()
 
@@ -64,8 +69,11 @@ class Game:
                 self.player.pos.y = hits[0].rect.top
                 self.player.vel.y = 0
         hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
+        hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
         if hitsCoins:
             hitsCoins[0].kill()
+        if hitsLetters:
+            hitsLetters[0].kill()
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
         x1 = 930
