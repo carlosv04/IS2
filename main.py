@@ -87,6 +87,8 @@ class Game:
         self.screen.blit(pg.image.load(boton_pausa),(930,70))
         pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
         #print(xa)
+        if xa >800:
+            xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
