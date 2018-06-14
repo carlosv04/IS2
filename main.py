@@ -90,7 +90,12 @@ class Game:
 
     def draw(self):
         global pos_saved
+        global monedas
         (xa,ya)= pos_saved
+        #print(xa)
+        if xa == 488:
+            monedas = 1
+            print("comio")
         # Game Loop - draw
         self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
