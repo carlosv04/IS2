@@ -4,7 +4,7 @@ import os
 TITLE = "Condor Dash"
 WIDTH = 1000
 HEIGHT = 600
-FPS = 60
+FPS = 120
 FONT_NAME = 'arial'
 # Propiedades del jugador
 PLAYER_ACC = 0.5
@@ -15,6 +15,8 @@ PLAYER_GRAVITY = 1.5
 #,(1000, 520, 30, 40)
 #,(1000, 480, 30, 100)
 # Plataformas iniciales
+PISO = (0, HEIGHT-40, WIDTH*10, 40)
+
 PLATFORM_LIST = [(10040, 0, 40, 600)
 				#,(300, HEIGHT*3/4, 100, 20)                
                 ,(300, 520, 30, 40)
