@@ -4,7 +4,7 @@ import os
 TITLE = "Juan el Condor"
 WIDTH = 1000
 HEIGHT = 600
-FPS = 60
+FPS = 120
 FONT_NAME = 'arial'
 # Propiedades del jugador
 PLAYER_ACC = 0.5
@@ -12,8 +12,9 @@ PLAYER_FRICTION = -0.12
 PLAYER_GRAVITY = 1.5
 
 # Plataformas iniciales
-PLATFORM_LIST = [(0, HEIGHT-40, WIDTH*10, 40),
-                (300, HEIGHT*3/4, 100, 20),
+PISO = (0, HEIGHT-40, WIDTH*10, 40)
+
+PLATFORM_LIST = [(300, HEIGHT*3/4, 100, 20),
                 (450, HEIGHT*3/4-100, 100, 20),
                 (600, HEIGHT*3/4-200, 100, 20)]
 

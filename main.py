@@ -20,6 +20,7 @@ class Game:
     def new(self):
         # start a new game
         self.all_sprites = pg.sprite.Group()
+        self.piso = pg.sprite.Group()
         self.platforms = pg.sprite.Group()
         self.coins = pg.sprite.Group()
         self.letters = pg.sprite.Group()
@@ -30,6 +31,10 @@ class Game:
         if use_pos_saved:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
+
+        suelo = Platform(*PISO)
+        self.all_sprites.add(suelo)
+        self.piso.add(suelo)
 
         for plat in PLATFORM_LIST:
             p = Platform(*plat)
@@ -69,7 +74,13 @@ class Game:
                 self.player.pos.y = hits[0].rect.top
                 self.player.vel.y = 0
 
-        #Si el jugador alcanza 1/2 de la pantalla
+        if self.player.vel.y > 0:
+            hitsPiso = pg.sprite.spritecollide(self.player, self.piso, False)
+            if hitsPiso:
+                self.player.pos.y = hitsPiso[0].rect.top
+                self.player.vel.y = 0
+
+        # Si el jugador alcanza 1/2 de la pantalla
         if self.player.rect.right >= WIDTH/2:
             self.player.pos.x -= abs(self.player.vel.x)
             for plat in self.all_sprites:
@@ -77,13 +88,21 @@ class Game:
                 if plat.rect.right <= 0:
                     plat.kill()
 
-        #Generar más plataformas aleatoriamente
+        # Lógica cuando muere el jugador
+        hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
+        if hitsLateral:
+            print(self.player.rect.right)
+            print(hitsLateral[0].rect.left)
+            if hitsLateral[0].rect.left <= self.player.rect.right - 10 and hitsLateral[0].rect.left >= self.player.rect.right - 15:
+                self.playing = False
+                print("Se chocó")
+
+        # Generar más plataformas aleatoriamente
         while len(self.platforms) < 7:
             width = random.randrange(50, 100)
             p = Platform(random.randrange(WIDTH, WIDTH*2), random.randrange(HEIGHT*3/4, HEIGHT*3/4 + width), width, 20)
             self.platforms.add(p)
             self.all_sprites.add(p)
-
 
         hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
         hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
@@ -129,7 +148,7 @@ class Game:
             xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
         self.all_sprites.draw(self.screen)
-        # *after* drawing everything, flip the display 
+        # *after* drawing everything, flip the display
         #pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
         #if player.pos.x > 500 && player.pos.x < 525 &&
         # *after* drawing everything, flip the display

@@ -20,8 +20,9 @@ class Player(pg.sprite.Sprite):
 #Verificacion si es que ha tocado el piso para que se le permita saltar denuevo
         self.rect.x += 1
         hits = pg.sprite.spritecollide(self, self.game.platforms, False)
+        hitsSuelo = pg.sprite.spritecollide(self, self.game.piso, False)
         self.rect.x -= 1
-        if hits:
+        if hits or hitsSuelo:
             self.vel.y = -20
 
     def update(self):
