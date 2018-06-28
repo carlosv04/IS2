@@ -27,7 +27,10 @@ class Game:
         self.player = Player(self)
         global use_pos_saved
         global pos_saved
-
+        global contMonedas
+        contMonedas = 0 
+        global contLetras
+        contLetras = 0
         if use_pos_saved:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
@@ -59,8 +62,9 @@ class Game:
         while self.playing:
             self.clock.tick(FPS)
             self.events()
-            self.draw()
             self.update()
+            self.draw()
+            
         global pagina
         pagina = 3
 
@@ -89,7 +93,8 @@ class Game:
                 #print(plat.rect.x)
                 plat.rect.x -= abs(self.player.vel.x)
                 if plat.rect.right <= 0:
-                    plat.kill()
+                   pass
+                   plat.kill()
             for i in self.platforms:
                 dato = abs(i.rect.x)
 
@@ -98,11 +103,11 @@ class Game:
             pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
 
         # Lógica cuando muere el jugador
-        hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
-        if hitsLateral:
+       hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
+       if hitsLateral:
            #print(self.player.rect.right)
             #print(hitsLateral[0].rect.left)
-            if hitsLateral[0].rect.left <= self.player.rect.right - 10 and hitsLateral[0].rect.left >= self.player.rect.right - 15:
+            if hitsLateral[0].rect.left <= self.player.rect.right - 8 and hitsLateral[0].rect.left >= self.player.rect.right - 18:
                 global pos_saved
                 pos_saved = vec(40, HEIGHT-40)
                 self.playing = False
@@ -118,11 +123,22 @@ class Game:
         hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
         hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
         #hitSalida = pg.sprite.spritecollide(self.player, self.salida, False)
+        global contMonedas
+        pg.draw.rect(self.screen,WHITE,(0,0, 100 ,20))
+        self.draw_text("Monedas: {}/{}".format(contMonedas, len(self.coins)+ contMonedas), 16, BLACK, 40,0)
+
         if hitsCoins:
             hitsCoins[0].kill()
+            contMonedas += 1
+            print(contMonedas)
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
+        global contLetras
+        pg.draw.rect(self.screen,WHITE,(905,0, 95 ,20))
+        self.draw_text("Letras: {}/{}".format(contLetras, len(self.letters)+contLetras), 16, BLACK, 940,0)
         if hitsLetters:
             hitsLetters[0].kill()
+            contLetras += 1
+            print(contLetras)
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_letter))
 
     def events(self):
