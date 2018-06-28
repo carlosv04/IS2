@@ -1,7 +1,7 @@
 import os
 
 # Configuraciones del juego
-TITLE = "Juan el Condor"
+TITLE = "Condor Dash"
 WIDTH = 1000
 HEIGHT = 600
 FPS = 120
@@ -14,9 +14,14 @@ PLAYER_GRAVITY = 1.5
 # Plataformas iniciales
 PISO = (0, HEIGHT-40, WIDTH*10, 40)
 
-PLATFORM_LIST = [(300, HEIGHT*3/4, 100, 20),
-                (450, HEIGHT*3/4-100, 100, 20),
-                (600, HEIGHT*3/4-200, 100, 20)]
+PLATFORM_LIST = [(300, HEIGHT*3/4, 100, 20)
+                ,(10040, 0, 40, 600)
+                ,(450, HEIGHT*3/4-100, 100, 20)
+                ,(600, HEIGHT*3/4-200, 100, 20)
+                ,(1500, HEIGHT*3/4-200, 100, 20)
+                ,(9000, HEIGHT*3/4-200, 100, 20)
+                ,(0, HEIGHT-40, WIDTH*10, 40)
+                ]
 
 COINS_LIST = [(500, 525, 25, 25),
 			(700, 525, 25, 25)]
@@ -36,7 +41,7 @@ flecha_I     = os.path.join(imagenes_path, "flechaI.png")
 suelo1_path   = os.path.join(imagenes_path, "suelo.png") # Path del suelo
 sonido_coin = os.path.join(sound_path, "soundCoin.wav")
 sonido_letter = os.path.join(sound_path, "soundLetter.wav")
-sonido_fondo = os.path.join(sound_path, "mp.wav")
+#sonido_fondo = os.path.join(sound_path, "mp.wav")
 moneda_img   = os.path.join(imagenes_path, "moneda1.jpg")
 
 # Colores

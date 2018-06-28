@@ -59,14 +59,16 @@ class Game:
         while self.playing:
             self.clock.tick(FPS)
             self.events()
-            self.update()
             self.draw()
+            self.update()
         global pagina
         pagina = 3
 
     def update(self):
+        #global dato
         # Game Loop - Update
         self.all_sprites.update()
+        pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
         # Verificacion si el jugador ha tocado la plataform - solo mientras cae
         if self.player.vel.y > 0:
             hits = pg.sprite.spritecollide(self.player, self.platforms, False)
@@ -81,12 +83,19 @@ class Game:
                 self.player.vel.y = 0
 
         # Si el jugador alcanza 1/2 de la pantalla
-        if self.player.rect.right >= WIDTH/2:
+        if self.player.rect.right >= WIDTH/4:
             self.player.pos.x -= abs(self.player.vel.x)
             for plat in self.all_sprites:
+                #print(plat.rect.x)
                 plat.rect.x -= abs(self.player.vel.x)
                 if plat.rect.right <= 0:
                     plat.kill()
+            for i in self.platforms:
+                dato = abs(i.rect.x)
+
+            print(dato)
+
+            pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
 
         # Lógica cuando muere el jugador
         hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
@@ -97,21 +106,23 @@ class Game:
                 self.playing = False
                 print("Se chocó")
 
-        # Generar más plataformas aleatoriamente
-        while len(self.platforms) < 7:
-            width = random.randrange(50, 100)
-            p = Platform(random.randrange(WIDTH, WIDTH*2), random.randrange(HEIGHT*3/4, HEIGHT*3/4 + width), width, 20)
-            self.platforms.add(p)
-            self.all_sprites.add(p)
+        #Generar más plataformas aleatoriamente
+  #      while len(self.platforms) < 7:
+   #         width = random.randrange(50, 100)
+    #        p = Platform(random.randrange(WIDTH, WIDTH*2), random.randrange(HEIGHT*3/4, HEIGHT*3/4 + width), width, 20)
+     #       self.platforms.add(p)
+      #      self.all_sprites.add(p)
 
         hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
         hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
+        #hitSalida = pg.sprite.spritecollide(self.player, self.salida, False)
         if hitsCoins:
             hitsCoins[0].kill()
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
         if hitsLetters:
             hitsLetters[0].kill()
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_letter))
+
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
         x1 = 930
@@ -137,16 +148,17 @@ class Game:
     def draw(self):
         global pos_saved
         global monedas
+        #global dato
         (xa,ya)= pos_saved
         # Game Loop - draw
-        self.screen.blit(pg.image.load(fondo_mapa1),(0,-40))
+        self.screen.blit(pg.image.load(fondo_mapa1),(0,20))
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
         self.screen.blit(pg.image.load(boton_pausa),(930,70))
-        pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
+        #pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
         #print(xa)
         if xa >800:
             xa=800
-        pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
+        #pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato ,10))
         self.all_sprites.draw(self.screen)
         # *after* drawing everything, flip the display
         #pg.draw.rect(self.screen,(4, 56, 255),(500,525, 25 ,25))
