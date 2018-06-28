@@ -68,6 +68,23 @@ class Game:
             if hits:
                 self.player.pos.y = hits[0].rect.top
                 self.player.vel.y = 0
+
+        #Si el jugador alcanza 1/2 de la pantalla
+        if self.player.rect.right >= WIDTH/2:
+            self.player.pos.x -= abs(self.player.vel.x)
+            for plat in self.all_sprites:
+                plat.rect.x -= abs(self.player.vel.x)
+                if plat.rect.right <= 0:
+                    plat.kill()
+
+        #Generar más plataformas aleatoriamente
+        while len(self.platforms) < 7:
+            width = random.randrange(50, 100)
+            p = Platform(random.randrange(WIDTH, WIDTH*2), random.randrange(HEIGHT*3/4, HEIGHT*3/4 + width), width, 20)
+            self.platforms.add(p)
+            self.all_sprites.add(p)
+
+
         hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
         hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
         if hitsCoins:
