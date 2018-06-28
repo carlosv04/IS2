@@ -70,7 +70,7 @@ class Game:
                 self.player.vel.y = 0
 
         #Si el jugador alcanza 1/2 de la pantalla
-        if self.player.rect.right >= WIDTH/2:
+        if self.player.rect.right >= WIDTH/4:
             self.player.pos.x -= abs(self.player.vel.x)
             for plat in self.all_sprites:
                 plat.rect.x -= abs(self.player.vel.x)
@@ -78,21 +78,24 @@ class Game:
                     plat.kill()
 
         #Generar más plataformas aleatoriamente
-        while len(self.platforms) < 7:
-            width = random.randrange(50, 100)
-            p = Platform(random.randrange(WIDTH, WIDTH*2), random.randrange(HEIGHT*3/4, HEIGHT*3/4 + width), width, 20)
-            self.platforms.add(p)
-            self.all_sprites.add(p)
+  #      while len(self.platforms) < 7:
+   #         width = random.randrange(50, 100)
+    #        p = Platform(random.randrange(WIDTH, WIDTH*2), random.randrange(HEIGHT*3/4, HEIGHT*3/4 + width), width, 20)
+     #       self.platforms.add(p)
+      #      self.all_sprites.add(p)
+
 
 
         hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
         hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
+        #hitSalida = pg.sprite.spritecollide(self.player, self.salida, False)
         if hitsCoins:
             hitsCoins[0].kill()
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
         if hitsLetters:
             hitsLetters[0].kill()
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_letter))
+
     def events(self):
         image_pausa = pg.image.load(boton_pausa)
         x1 = 930
@@ -124,7 +127,7 @@ class Game:
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
         self.screen.blit(pg.image.load(boton_pausa),(930,70))
         pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
-        #print(xa)
+        print(xa)
         if xa >800:
             xa=800
         pg.draw.rect(self.screen,(255, 0, 0),(100,10, xa ,10))
