@@ -103,6 +103,8 @@ class Game:
             print(self.player.rect.right)
             print(hitsLateral[0].rect.left)
             if hitsLateral[0].rect.left <= self.player.rect.right - 10 and hitsLateral[0].rect.left >= self.player.rect.right - 15:
+                global pos_saved
+                pos_saved = vec(40, HEIGHT-40)
                 self.playing = False
                 print("Se chocó")
 
