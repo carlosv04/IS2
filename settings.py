@@ -12,14 +12,13 @@ PLAYER_FRICTION = -0.12
 PLAYER_GRAVITY = 1.5
 
 # Plataformas iniciales
-PLATFORM_LIST = [(0, HEIGHT-40, WIDTH*10, 40)
-                ,(300, HEIGHT*3/4, 100, 20)
+PLATFORM_LIST = [(300, HEIGHT*3/4, 100, 20)
                 ,(10040, 0, 40, 600)
                 ,(450, HEIGHT*3/4-100, 100, 20)
                 ,(600, HEIGHT*3/4-200, 100, 20)
                 ,(1500, HEIGHT*3/4-200, 100, 20)
                 ,(9000, HEIGHT*3/4-200, 100, 20)
-
+                ,(0, HEIGHT-40, WIDTH*10, 40)
                 ]
 
 COINS_LIST = [(500, 525, 25, 25),
