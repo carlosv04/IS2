@@ -45,7 +45,7 @@ class Game:
             l = Letter(*letter)
             self.all_sprites.add(l)
             self.letters.add(l)
-        pg.mixer.Sound.play(pg.mixer.Sound(sonido_fondo))
+        #pg.mixer.Sound.play(pg.mixer.Sound(sonido_fondo))
         self.run()
 
     def run(self):
