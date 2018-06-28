@@ -98,14 +98,14 @@ class Game:
             pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
 
         # Lógica cuando muere el jugador
- #       hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
-  #      if hitsLateral:
-   #         #print(self.player.rect.right)
-    #        #print(hitsLateral[0].rect.left)
-     #       if hitsLateral[0].rect.left <= self.player.rect.right - 10 and hitsLateral[0].rect.left >= self.player.rect.right - 15:
-      #          global pos_saved
-       #         pos_saved = vec(40, HEIGHT-40)
-        #        self.playing = False
+        hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
+        if hitsLateral:
+           #print(self.player.rect.right)
+            #print(hitsLateral[0].rect.left)
+            if hitsLateral[0].rect.left <= self.player.rect.right - 10 and hitsLateral[0].rect.left >= self.player.rect.right - 15:
+                global pos_saved
+                pos_saved = vec(40, HEIGHT-40)
+                self.playing = False
                 #print("Se chocó")
 
         #Generar más plataformas aleatoriamente
