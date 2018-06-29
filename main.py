@@ -103,8 +103,8 @@ class Game:
             pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
 
         # Lógica cuando muere el jugador
-       hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
-       if hitsLateral:
+        hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
+        if hitsLateral:
            #print(self.player.rect.right)
             #print(hitsLateral[0].rect.left)
             if hitsLateral[0].rect.left <= self.player.rect.right - 8 and hitsLateral[0].rect.left >= self.player.rect.right - 18:
