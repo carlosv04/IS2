@@ -253,9 +253,11 @@ class Game:
 
         fondo_mapas = fondo_mapa1
         flechaR = flecha_Reg
-        self.screen.blit(pg.image.load(fondo_mapas),(0,0))
+        #self.screen.blit(pg.image.load(fondo_mapas),(0,0))
+        pg.draw.rect(self.screen,(204,204,179),(0,0, WIDTH ,HEIGHT))
+        pg.draw.rect(self.screen,(255,255,0),(0,580, WIDTH ,20))
         self.screen.blit(pg.image.load(flechaR), (15,15))
-        pg.display.flip()
+        #pg.display.flip()
         global pagina
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -266,6 +268,8 @@ class Game:
                     if x>= 15 and x <=79 and y>=15 and y<=79:
                         pagina = 1
                     print(x)
+                    pg.draw.rect(self.screen,(255,255,0),(x,y, 10 ,10))
+                    pg.display.flip()
     def show_main_menu(self):
         if not self.running:
             return
