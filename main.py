@@ -233,6 +233,8 @@ class Game:
         if not self.running:
             return
 
+        global mapita
+        mapita = 1
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
         self.draw_text("Iniciar", 48, WHITE, 500,440)
@@ -260,7 +262,7 @@ class Game:
         #pg.display.flip()
         global pagina
         global nMapa
-        #nMapa = []
+        
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False 
@@ -284,14 +286,18 @@ class Game:
         fondo_mapas = fondo_mapa1
         posx = 1000
         tam = 780
+
         global nMapa
         nMapa = []
         self.screen.blit(pg.image.load(fondo_mapas),(0,0))
-        pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
-        self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
-        #mapa 2
-        pg.draw.rect(self.screen,(203,232,186),(1100,100, 780 ,250))
-        self.draw_text("Chan Chan", 48, WHITE, 1490,120)
+        global mapita
+        if mapita == 1:        
+            pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
+            self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
+        elif mapita == 2:
+            #mapa 2
+            pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
+            self.draw_text("Chan Chan", 48, WHITE, 490,120)    
         #flechas
         self.screen.blit(pg.image.load(flecha_D),(920,180))
         self.screen.blit(pg.image.load(flecha_I),(15,180))
@@ -303,9 +309,11 @@ class Game:
         ymin=100
         xmax=880
         ymax=350
-        pg.display.flip()
+        #pg.display.flip()
         sw= False
         global pagina
+        #cantidad de mapas
+        totalmapas = 2
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False                
@@ -316,6 +324,16 @@ class Game:
                         pagina = 2
                     elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
                         pagina = 4
+                    elif x >= 920 and x <= 984 and y >= 180 and y <= 244:
+                        if mapita == totalmapas:
+                            mapita = totalmapas
+                        else:
+                            mapita = mapita + 1
+                    elif x >= 15 and x <= 79 and y >= 180 and y <= 244:
+                        if mapita > 1:
+                            mapita = mapita - 1
+                        else:
+                            mapita = 1
                         '''while sw:
 
                             fondo_mapas = fondo_mapa2
@@ -336,6 +354,7 @@ class Game:
         #por el momento solo iremos a la pagina del juego
         #global pagina
         #pagina = 2
+        pg.display.flip()
 
 
     def show_go_screen(self):
