@@ -250,7 +250,22 @@ class Game:
     def pantalla_maker(self):
         if not self.running:
             return
-         
+
+        fondo_mapas = fondo_mapa1
+        flechaR = flecha_Reg
+        self.screen.blit(pg.image.load(fondo_mapas),(0,0))
+        self.screen.blit(pg.image.load(flechaR), (15,15))
+        pg.display.flip()
+        global pagina
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                self.running = False 
+            if event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    x,y = pg.mouse.get_pos()
+                    if x>= 15 and x <=79 and y>=15 and y<=79:
+                        pagina = 1
+                    print(x)
     def show_main_menu(self):
         if not self.running:
             return
@@ -267,20 +282,27 @@ class Game:
         #flechas
         self.screen.blit(pg.image.load(flecha_D),(920,180))
         self.screen.blit(pg.image.load(flecha_I),(15,180))
+        #Maker
+        pg.draw.rect(self.screen,(68, 204, 0),(350,450, 300 ,60))
+        self.draw_text("Maker", 48, WHITE, 500,450)
 
         xmin=100
         ymin=100
         xmax=880
         ymax=350
         pg.display.flip()
-        sw= True
+        sw= False
+        global pagina
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                self.running = False
+                self.running = False                
             if event.type == pg.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     x,y = pg.mouse.get_pos()
-                    if x >= 920 and x <= 984 and y >= 180 and y <= 244:
+                    if x >= 100 and x <= 880 and y >= 100 and y <= 350:
+                        pagina = 2
+                    elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
+                        pagina = 4
                         '''while sw:
 
                             fondo_mapas = fondo_mapa2
@@ -292,10 +314,10 @@ class Game:
                                 sw = False
                             pg.display.update()'''
 
-                    self.coger_mouse(xmin,xmax,ymin,ymax)
+                    #self.coger_mouse(xmin,xmax,ymin,ymax)
                     #por el momento solo iremos a la pagina del juego
-                    global pagina
-                    pagina = 2
+                    
+                    #pagina = 2
         #self.pagina = 2
         #self.coger_mouse(xmin,xmax,ymin,ymax)
         #por el momento solo iremos a la pagina del juego
@@ -351,7 +373,8 @@ while g.running:
         g.new()
     elif pagina == 3:
         g.on_pausa()
-
+    elif pagina == 4:
+        g.pantalla_maker()
 #    g.show_main_menu()
 #    g.show_go_screen()
 

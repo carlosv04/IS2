@@ -108,6 +108,7 @@ fondo_mapa2   = os.path.join(imagenes_path, "mapa2.png")
 boton_pausa   = os.path.join(imagenes_path, "pause.png")
 flecha_D      = os.path.join(imagenes_path, "flechaD.png")
 flecha_I     = os.path.join(imagenes_path, "flechaI.png")
+flecha_Reg 	= os.path.join(imagenes_path,"flechaRegreso.png")
 suelo1_path   = os.path.join(imagenes_path, "suelo.png") # Path del suelo
 sonido_coin = os.path.join(sound_path, "soundCoin.wav")
 sonido_letter = os.path.join(sound_path, "soundLetter.wav")
