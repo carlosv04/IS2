@@ -113,6 +113,7 @@ sonido_coin = os.path.join(sound_path, "soundCoin.wav")
 sonido_letter = os.path.join(sound_path, "soundLetter.wav")
 #sonido_fondo = os.path.join(sound_path, "mp.wav")
 moneda_img   = os.path.join(imagenes_path, "moneda1.jpg")
+iconoMoneda = os.path.join(imagenes_path, "moneda.png")
 
 # Colores
 WHITE = (255, 255, 255)

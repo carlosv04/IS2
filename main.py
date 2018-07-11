@@ -247,6 +247,10 @@ class Game:
         global pagina
         pagina = 1
 
+    def pantalla_maker(self):
+        if not self.running:
+            return
+         
     def show_main_menu(self):
         if not self.running:
             return
@@ -334,6 +338,8 @@ class Game:
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x, y)
         self.screen.blit(text_surface, text_rect)
+
+
 
 
 g = Game()
