@@ -259,16 +259,24 @@ class Game:
         self.screen.blit(pg.image.load(flechaR), (15,15))
         #pg.display.flip()
         global pagina
+        global nMapa
+        #nMapa = []
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False 
             if event.type == pg.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     x,y = pg.mouse.get_pos()
+                    dato = (x,y)
                     if x>= 15 and x <=79 and y>=15 and y<=79:
                         pagina = 1
-                    print(x)
-                    pg.draw.rect(self.screen,(255,255,0),(x,y, 10 ,10))
+                    
+                    nMapa.append(dato)
+                    for m in nMapa:
+                        #print (m)
+                    
+                        a,b = m
+                        pg.draw.rect(self.screen,(255,255,0),(a,b, 10 ,10))
                     pg.display.flip()
     def show_main_menu(self):
         if not self.running:
@@ -276,7 +284,8 @@ class Game:
         fondo_mapas = fondo_mapa1
         posx = 1000
         tam = 780
-
+        global nMapa
+        nMapa = []
         self.screen.blit(pg.image.load(fondo_mapas),(0,0))
         pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
         self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
