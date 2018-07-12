@@ -124,7 +124,7 @@ class Game:
             for i in self.platforms:
                 dato = abs(i.rect.x)
 
-            #print(dato)
+            print(dato)
 
             pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
 
