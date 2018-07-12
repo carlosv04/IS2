@@ -132,7 +132,7 @@ class Game:
             if hitsPiso:
                 self.player.pos.y = hitsPiso[0].rect.top
                 self.player.vel.y = 0
-
+        global pagina
         # Si el jugador alcanza 1/2 de la pantalla
         if self.player.rect.right >= WIDTH/4:
             self.player.pos.x -= abs(self.player.vel.x)
@@ -148,7 +148,10 @@ class Game:
             print(dato)
 
             pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
+            if dato >=9600:
+                self.playing = False
 
+                pagina = 1
         # Lógica cuando muere el jugador
         hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
         if hitsLateral:
@@ -158,7 +161,7 @@ class Game:
                 global pos_saved
                 pos_saved = vec(40, HEIGHT-40)
                 self.playing = False
-                global pagina
+                #global pagina
                 pagina = 5
                 #print("Se chocó")
 
