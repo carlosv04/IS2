@@ -177,7 +177,7 @@ sonido_letter = os.path.join(sound_path, "soundLetter.wav")
 letra_img = os.path.join(imagenes_path, "letra.png")
 moneda_img   = os.path.join(imagenes_path, "moneda.png")
 condor_img = os.path.join(imagenes_path, "condor2.png")
-
+ladrillo_img = os.path.join(imagenes_path, "ladrillo.jpg")
 clear_icon = os.path.join(imagenes_path, "stop.png")
 
 # Colores

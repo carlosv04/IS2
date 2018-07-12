@@ -57,8 +57,10 @@ class Player(pg.sprite.Sprite):
 class Platform(pg.sprite.Sprite):
     def __init__(self, x, y, w, h):
         pg.sprite.Sprite.__init__(self)
-        self.image = pg.Surface((w,h))
-        self.image.fill(GREEN)
+        picture = pg.image.load(ladrillo_img)
+        picture = pg.transform.scale(picture, (w, h))
+        self.image = picture
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
