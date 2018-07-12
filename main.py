@@ -306,8 +306,7 @@ class Game:
         posx = 1000
         tam = 780
 
-        global nMapa
-        nMapa = []
+        
         self.screen.blit(pg.image.load(fondo_mapas),(0,0))
         global mapita
         if mapita == 1:        
@@ -342,6 +341,8 @@ class Game:
                     if x >= 100 and x <= 880 and y >= 100 and y <= 350:
                         pagina = 2
                     elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
+                        global nMapa
+                        nMapa = []
                         pagina = 4
                     elif x >= 920 and x <= 984 and y >= 180 and y <= 244:
                         if mapita == totalmapas:
