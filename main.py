@@ -386,13 +386,15 @@ class Game:
         tam = 780
 
 
-        self.screen.blit(pg.image.load(fondo_mapas),(0,0))
+        #self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
         global mapita
         if mapita == 1:
+            self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
             pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
             self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
         elif mapita == 2:
             #mapa 2
+            self.screen.blit(pg.image.load(fondo_mapa2),(0,0))
             pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
             self.draw_text("Chan Chan", 48, WHITE, 490,120)
         #flechas
