@@ -41,9 +41,6 @@ class Game:
 
         global nMapa
 
-        #if nMapa == []:
-        #    nMapa = [(10000, 0)]
-
         if mapita == 1:
 
             for plat in PLATFORM_LIST:
@@ -272,6 +269,10 @@ class Game:
         mapita = 1
         global nMapa
         nMapa = None
+        global nCoin
+        nMapa = None
+        global nLet
+        nMapa = None
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
         self.draw_text("Iniciar", 48, WHITE, 500,440)
@@ -292,14 +293,24 @@ class Game:
 
         fondo_mapas = fondo_mapa1
         flechaR = flecha_Reg
+        parar = clear_icon
         #self.screen.blit(pg.image.load(fondo_mapas),(0,0))
         pg.draw.rect(self.screen,(204,204,179),(0,0, WIDTH ,HEIGHT))
         pg.draw.rect(self.screen,(255,255,0),(0,580, WIDTH ,20))
+        pg.draw.rect(self.screen,(0,0,0),(0,90, WIDTH ,5))
         self.screen.blit(pg.image.load(flechaR), (15,15))
+        self.screen.blit(pg.image.load(parar), (415,15))
+
+        #opciones para seleccionar
+        pg.draw.rect(self.screen,(255,255,0),(115,15, 60 ,60))
+        pg.draw.rect(self.screen,(255,0,0),(215,15, 60 ,60))
+        pg.draw.rect(self.screen,(0,0,255),(315,15, 60 ,60))
         #pg.display.flip()
         global pagina
         global nMapa
-
+        global nCoin
+        global nLet
+        global obj
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False
@@ -307,15 +318,35 @@ class Game:
                 if event.button == 1:
                     x,y = pg.mouse.get_pos()
                     dato = (x,y)
+                    #obj = 0
                     if x>= 15 and x <=79 and y>=15 and y<=79:
                         pagina = 1
+                    if x>= 115 and x<= 175 and y>=15 and y <=75:
+                        obj = 1
+                    if x>= 215 and x<= 275 and y>=15 and y <=75:
+                        obj = 2
+                    if x>= 315 and x<= 375 and y>=15 and y <=75:
+                        obj = 3
+                    if x>= 415 and x<= 475 and y>=15 and y <=75:
+                        obj = 0
 
-                    nMapa.append(dato)
+                    if x>= 0 and x<= WIDTH and y>=90 and y <=HEIGHT:
+                        if obj == 1:
+                            nMapa.append(dato)
+                        if obj == 2:
+                            nCoin.append(dato)                            
+                        if obj == 3:
+                            nLet.append(dato)                            
                     for m in nMapa:
                         #print (m)
-
                         a,b = m
                         pg.draw.rect(self.screen,(255,255,0),(a,b, 10 ,10))
+                    for m in nCoin:
+                        a,b = m
+                        pg.draw.rect(self.screen,(255,0,0),(a,b, 10 ,10))
+                    for m in nLet:
+                        a,b = m
+                        pg.draw.rect(self.screen,(0,0,255),(a,b, 10 ,10))
                     pg.display.flip()
     def show_main_menu(self):
         if not self.running:
@@ -349,6 +380,9 @@ class Game:
         sw= False
         global pagina
         global nMapa
+        global nCoin
+        global nLet
+        global obj
         #cantidad de mapas
         totalmapas = 2
         for event in pg.event.get():
@@ -360,10 +394,15 @@ class Game:
                     if x >= 100 and x <= 880 and y >= 100 and y <= 350:
                         if nMapa == None:
                             nMapa = [(1000, 530)]
+                            #nCoin = [(1000, 530)]
+                            #nLet = [(1000, 530)]
                         pagina = 2
                     elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
 
                         nMapa = []
+                        nCoin = []
+                        nLet = []
+                        obj = 0
                         pagina = 4
                     elif x >= 920 and x <= 984 and y >= 180 and y <= 244:
                         if mapita == totalmapas:
