@@ -9,8 +9,10 @@ class Player(pg.sprite.Sprite):
     def __init__(self, game):
         self.game = game
         pg.sprite.Sprite.__init__(self)
-        self.image = pg.Surface((30,40))
-        self.image.fill(YELLOW)
+        picture = pg.image.load(condor_img)
+        picture = pg.transform.scale(picture, (40, 50))
+        self.image = picture
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.pos = vec(40, HEIGHT-40)
         self.vel = vec(8,0)
@@ -64,8 +66,10 @@ class Platform(pg.sprite.Sprite):
 class Coin(pg.sprite.Sprite):
     def __init__(self, x, y, w, h):
         pg.sprite.Sprite.__init__(self)
-        self.image = pg.Surface((w,h))
-        self.image.fill(BLUE)
+        picture = pg.image.load(moneda_img)
+        picture = pg.transform.scale(picture, (w, h))
+        self.image = picture
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
@@ -73,8 +77,10 @@ class Coin(pg.sprite.Sprite):
 class Letter(pg.sprite.Sprite):
     def __init__(self, x, y, w, h):
         pg.sprite.Sprite.__init__(self)
-        self.image = pg.Surface((w,h))
-        self.image.fill(RED)
+        picture = pg.image.load(letra_img)
+        picture = pg.transform.scale(picture, (w, h))
+        self.image = picture
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
