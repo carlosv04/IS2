@@ -36,10 +36,8 @@ class Game:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
 
-        suelo = Platform(*PISO)
-        self.all_sprites.add(suelo)
-        self.piso.add(suelo)
-        print (mapita)
+        
+        #print (mapita)
 
         global nMapa
 
@@ -79,6 +77,10 @@ class Game:
                 l = Letter(*letter)
                 self.all_sprites.add(l)
                 self.letters.add(l)
+
+        suelo = Platform(*PISO)
+        self.all_sprites.add(suelo)
+        self.piso.add(suelo)
         #pg.mixer.Sound.play(pg.mixer.Sound(sonido_fondo))
         self.run()
 
@@ -350,7 +352,7 @@ class Game:
                     x,y = pg.mouse.get_pos()
                     if x >= 100 and x <= 880 and y >= 100 and y <= 350:
                         if nMapa == None:
-                            nMapa = [(10000, 0)]
+                            nMapa = [(1000, 530)]
                         pagina = 2
                     elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
 
