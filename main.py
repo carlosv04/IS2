@@ -42,6 +42,10 @@ class Game:
         print (mapita)
 
         global nMapa
+
+        #if nMapa == []:
+        #    nMapa = [(10000, 0)]
+
         if mapita == 1:
 
             for plat in PLATFORM_LIST:
@@ -61,7 +65,7 @@ class Game:
         elif mapita == 2:
             for plat in nMapa:
                 (a,b) = plat
-                p = Platform(a,b,15,15)
+                p = Platform(a*10,b,30,30)
                 #p = Platform(*plat)
                 self.all_sprites.add(p)
                 self.platforms.add(p)
@@ -257,6 +261,8 @@ class Game:
 
         global mapita
         mapita = 1
+        global nMapa
+        nMapa = None
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
         self.draw_text("Iniciar", 48, WHITE, 500,440)
@@ -333,6 +339,7 @@ class Game:
         #pg.display.flip()
         sw= False
         global pagina
+        global nMapa
         #cantidad de mapas
         totalmapas = 2
         for event in pg.event.get():
@@ -342,9 +349,11 @@ class Game:
                 if event.button == 1:
                     x,y = pg.mouse.get_pos()
                     if x >= 100 and x <= 880 and y >= 100 and y <= 350:
+                        if nMapa == None:
+                            nMapa = [(10000, 0)]
                         pagina = 2
                     elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
-                        global nMapa
+                        
                         nMapa = []
                         pagina = 4
                     elif x >= 920 and x <= 984 and y >= 180 and y <= 244:
