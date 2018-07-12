@@ -18,7 +18,7 @@ PLAYER_GRAVITY = 1.5
 PISO = (0, HEIGHT-40, WIDTH*10, 40)
 
 PLATFORM_LIST = [(10000, 0, 40, 600)
-				#,(300, HEIGHT*3/4, 100, 20)                
+				#,(300, HEIGHT*3/4, 100, 20)
                 #,(300, 520, 30, 40)
                 ,(450, 480, 30, 100)
                 #,(600, 440, 30, 140)
@@ -78,7 +78,7 @@ PLATFORM_LIST = [(10000, 0, 40, 600)
                 ]
 
 PLATFORM_LIST2 = [(10000, 0, 40, 600)
-				#,(300, HEIGHT*3/4, 100, 20)                
+				#,(300, HEIGHT*3/4, 100, 20)
                 #,(300, 520, 30, 40)
                 #,(450, 480, 30, 100)
                 #,(600, 440, 30, 140)
@@ -173,8 +173,11 @@ suelo1_path   = os.path.join(imagenes_path, "suelo.png") # Path del suelo
 sonido_coin = os.path.join(sound_path, "soundCoin.wav")
 sonido_letter = os.path.join(sound_path, "soundLetter.wav")
 #sonido_fondo = os.path.join(sound_path, "mp.wav")
-moneda_img   = os.path.join(imagenes_path, "moneda1.jpg")
-iconoMoneda = os.path.join(imagenes_path, "moneda.png")
+
+letra_img = os.path.join(imagenes_path, "letra.png")
+moneda_img   = os.path.join(imagenes_path, "moneda.png")
+condor_img = os.path.join(imagenes_path, "condor2.png")
+ladrillo_img = os.path.join(imagenes_path, "ladrillo.jpg")
 clear_icon = os.path.join(imagenes_path, "stop.png")
 
 # Colores
