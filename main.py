@@ -40,6 +40,8 @@ class Game:
         #print (mapita)
 
         global nMapa
+        global nCoin
+        global nLet
 
         if mapita == 1:
 
@@ -68,13 +70,15 @@ class Game:
             p = Platform(0, HEIGHT-40, WIDTH*10, 40)
             self.all_sprites.add(p)
             self.platforms.add(p)
-            for coin in COINS_LIST:
-                c = Coin(*coin)
+            for coin in nCoin:
+                (a,b)= coin
+                c = Coin(a*10, b, 25, 25)
                 self.all_sprites.add(c)
                 self.coins.add(c)
 
-            for letter in LETTERS_LIST:
-                l = Letter(*letter)
+            for letter in nLet:
+                (a,b)=letter
+                l = Letter(a*10, b, 25, 25)
                 self.all_sprites.add(l)
                 self.letters.add(l)
 
@@ -270,9 +274,9 @@ class Game:
         global nMapa
         nMapa = None
         global nCoin
-        nMapa = None
+        nCoin = None
         global nLet
-        nMapa = None
+        nLet = None
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
         self.draw_text("Iniciar", 48, WHITE, 500,440)
@@ -394,8 +398,10 @@ class Game:
                     if x >= 100 and x <= 880 and y >= 100 and y <= 350:
                         if nMapa == None:
                             nMapa = [(1000, 530)]
-                            #nCoin = [(1000, 530)]
-                            #nLet = [(1000, 530)]
+                        if nCoin == None:
+                            nCoin = [(-10, 530)]
+                        if nLet == None:
+                            nLet = [(-10, 530)]
                         pagina = 2
                     elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
 
