@@ -277,7 +277,10 @@ class Game:
         nCoin = None
         global nLet
         nLet = None
+
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
+        #Logocondor_img
+        self.screen.blit(pg.image.load(Logocondor_img),(200,0))
         pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
         self.draw_text("Iniciar", 48, WHITE, 500,440)
         xmin=280
