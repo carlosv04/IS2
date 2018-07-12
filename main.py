@@ -67,7 +67,10 @@ class Game:
                 #p = Platform(*plat)
                 self.all_sprites.add(p)
                 self.platforms.add(p)
-
+            
+            p = Platform(0, HEIGHT-40, WIDTH*10, 40)
+            self.all_sprites.add(p)
+            self.platforms.add(p)
             for coin in COINS_LIST:
                 c = Coin(*coin)
                 self.all_sprites.add(c)
