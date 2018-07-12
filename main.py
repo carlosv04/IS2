@@ -28,7 +28,7 @@ class Game:
         global use_pos_saved
         global pos_saved
         global contMonedas
-        contMonedas = 0 
+        contMonedas = 0
         global contLetras
         contLetras = 0
         global mapita
@@ -90,7 +90,7 @@ class Game:
             self.events()
             self.update()
             self.draw()
-            
+
         global pagina
         pagina = 3
 
@@ -290,21 +290,21 @@ class Game:
         #pg.display.flip()
         global pagina
         global nMapa
-        
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                self.running = False 
+                self.running = False
             if event.type == pg.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     x,y = pg.mouse.get_pos()
                     dato = (x,y)
                     if x>= 15 and x <=79 and y>=15 and y<=79:
                         pagina = 1
-                    
+
                     nMapa.append(dato)
                     for m in nMapa:
                         #print (m)
-                    
+
                         a,b = m
                         pg.draw.rect(self.screen,(255,255,0),(a,b, 10 ,10))
                     pg.display.flip()
@@ -315,16 +315,16 @@ class Game:
         posx = 1000
         tam = 780
 
-        
+
         self.screen.blit(pg.image.load(fondo_mapas),(0,0))
         global mapita
-        if mapita == 1:        
+        if mapita == 1:
             pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
             self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
         elif mapita == 2:
             #mapa 2
             pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
-            self.draw_text("Chan Chan", 48, WHITE, 490,120)    
+            self.draw_text("Chan Chan", 48, WHITE, 490,120)
         #flechas
         self.screen.blit(pg.image.load(flecha_D),(920,180))
         self.screen.blit(pg.image.load(flecha_I),(15,180))
@@ -344,16 +344,16 @@ class Game:
         totalmapas = 2
         for event in pg.event.get():
             if event.type == pg.QUIT:
-                self.running = False                
+                self.running = False
             if event.type == pg.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     x,y = pg.mouse.get_pos()
                     if x >= 100 and x <= 880 and y >= 100 and y <= 350:
                         if nMapa == None:
-                            nMapa = [(1000, 530)]
+                            nMapa = [(10000, 0)]
                         pagina = 2
                     elif x >= 350 and x <= 650 and y >= 450 and y <= 510:
-                        
+
                         nMapa = []
                         pagina = 4
                     elif x >= 920 and x <= 984 and y >= 180 and y <= 244:
@@ -379,7 +379,7 @@ class Game:
 
                     #self.coger_mouse(xmin,xmax,ymin,ymax)
                     #por el momento solo iremos a la pagina del juego
-                    
+
                     #pagina = 2
         #self.pagina = 2
         #self.coger_mouse(xmin,xmax,ymin,ymax)
@@ -390,8 +390,17 @@ class Game:
 
 
     def show_go_screen(self):
-        # game over/continue
-        pass
+        if not self.running:
+            return
+        self.screen.fill(BLACK)
+        self.draw_text("Estas Muerto :(", 48, WHITE, WIDTH/2, HEIGHT/4)
+        self.draw_text("Presiona alguna tecla para empezar de nuevo", 22, WHITE, WIDTH/2, HEIGHT/2)
+        pg.display.flip()
+        self.wait_for_a_key()
+        global pagina
+        global use_pos_saved
+        pagina = 2
+        use_pos_saved = False
 
     def wait_for_a_key(self):
         waiting = True
@@ -435,6 +444,7 @@ while g.running:
         g.show_main_menu()
     elif pagina == 2:
         g.new()
+        g.show_go_screen()
     elif pagina == 3:
         g.on_pausa()
     elif pagina == 4:
