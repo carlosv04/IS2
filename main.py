@@ -62,7 +62,7 @@ class Game:
         elif mapita == 2:
             for plat in nMapa:
                 (a,b) = plat
-                p = Platform(a*10,b,30,30)
+                p = Platform(a*10,b-10,30,30)
                 #p = Platform(*plat)
                 self.all_sprites.add(p)
                 self.platforms.add(p)
@@ -72,13 +72,13 @@ class Game:
             self.platforms.add(p)
             for coin in nCoin:
                 (a,b)= coin
-                c = Coin(a*10, b, 25, 25)
+                c = Coin(a*10, b-10, 25, 25)
                 self.all_sprites.add(c)
                 self.coins.add(c)
 
             for letter in nLet:
                 (a,b)=letter
-                l = Letter(a*10, b, 25, 25)
+                l = Letter(a*10, b-10, 25, 25)
                 self.all_sprites.add(l)
                 self.letters.add(l)
 
@@ -300,15 +300,28 @@ class Game:
         parar = clear_icon
         #self.screen.blit(pg.image.load(fondo_mapas),(0,0))
         pg.draw.rect(self.screen,(204,204,179),(0,0, WIDTH ,HEIGHT))
-        pg.draw.rect(self.screen,(255,255,0),(0,580, WIDTH ,20))
+        pg.draw.rect(self.screen,(255,255,0),(0,560, WIDTH ,40))
         pg.draw.rect(self.screen,(0,0,0),(0,90, WIDTH ,5))
+
+        picture = pg.image.load(ladrillo_img)
+        picture = pg.transform.scale(picture, (60, 60))
+        self.screen.blit(picture,(115,15))
+
+        picture = pg.image.load(moneda_img)
+        picture = pg.transform.scale(picture, (60, 60))
+        self.screen.blit(picture,(215,15))
+
+        picture = pg.image.load(letra_img)
+        picture = pg.transform.scale(picture, (60, 60))
+        self.screen.blit(picture,(315,15))
+
         self.screen.blit(pg.image.load(flechaR), (15,15))
         self.screen.blit(pg.image.load(parar), (415,15))
 
         #opciones para seleccionar
-        pg.draw.rect(self.screen,(255,255,0),(115,15, 60 ,60))
-        pg.draw.rect(self.screen,(255,0,0),(215,15, 60 ,60))
-        pg.draw.rect(self.screen,(0,0,255),(315,15, 60 ,60))
+        #pg.draw.rect(self.screen,(255,255,0),(115,15, 60 ,60))
+        #pg.draw.rect(self.screen,(255,0,0),(215,15, 60 ,60))
+        #pg.draw.rect(self.screen,(0,0,255),(315,15, 60 ,60))
         #pg.display.flip()
         global pagina
         global nMapa
@@ -344,13 +357,23 @@ class Game:
                     for m in nMapa:
                         #print (m)
                         a,b = m
-                        pg.draw.rect(self.screen,(255,255,0),(a,b, 10 ,10))
+                        picture = pg.image.load(ladrillo_img)
+                        picture = pg.transform.scale(picture, (10, 10))
+                        self.screen.blit(picture,(a,b))
+
+                        #pg.draw.rect(self.screen,(255,255,0),(a,b, 10 ,10))
                     for m in nCoin:
                         a,b = m
-                        pg.draw.rect(self.screen,(255,0,0),(a,b, 10 ,10))
+                        picture = pg.image.load(moneda_img)
+                        picture = pg.transform.scale(picture, (10, 10))
+                        self.screen.blit(picture,(a,b))
+
                     for m in nLet:
                         a,b = m
-                        pg.draw.rect(self.screen,(0,0,255),(a,b, 10 ,10))
+                        picture = pg.image.load(letra_img)
+                        picture = pg.transform.scale(picture, (10, 10))
+                        self.screen.blit(picture,(a,b))
+
                     pg.display.flip()
     def show_main_menu(self):
         if not self.running:
