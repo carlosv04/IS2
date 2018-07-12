@@ -281,7 +281,11 @@ class Game:
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         #Logocondor_img
         self.screen.blit(pg.image.load(Logocondor_img),(200,0))
-        pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
+        #boton_inicio
+        picture = pg.image.load(boton_inicio)
+        picture = pg.transform.scale(picture, (440, 160))
+        self.screen.blit(picture,(280,390))
+        #pg.draw.rect(self.screen,(255,93,85),(280,435, 440 ,65))
         self.draw_text("Iniciar", 48, WHITE, 500,440)
         xmin=280
         ymin=435
@@ -401,7 +405,10 @@ class Game:
         self.screen.blit(pg.image.load(flecha_D),(920,180))
         self.screen.blit(pg.image.load(flecha_I),(15,180))
         #Maker
-        pg.draw.rect(self.screen,(68, 204, 0),(350,450, 300 ,60))
+        picture = pg.image.load(boton_maker)
+        picture = pg.transform.scale(picture, (300, 80))
+        self.screen.blit(picture,(350,440))
+        #pg.draw.rect(self.screen,(68, 204, 0),(350,450, 300 ,60))
         self.draw_text("Maker", 48, WHITE, 500,450)
 
         xmin=100
