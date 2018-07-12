@@ -41,6 +41,7 @@ class Game:
         self.piso.add(suelo)
         print (mapita)
 
+        global nMapa
         if mapita == 1:
 
             for plat in PLATFORM_LIST:
@@ -58,8 +59,10 @@ class Game:
                 self.all_sprites.add(l)
                 self.letters.add(l)
         elif mapita == 2:
-            for plat in PLATFORM_LIST2:
-                p = Platform(*plat)
+            for plat in nMapa:
+                (a,b) = plat
+                p = Platform(a,b,15,15)
+                #p = Platform(*plat)
                 self.all_sprites.add(p)
                 self.platforms.add(p)
 
