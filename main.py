@@ -91,8 +91,8 @@ class Game:
             self.update()
             self.draw()
 
-        global pagina
-        pagina = 3
+        #global pagina
+        #pagina = 3
 
     def update(self):
         #global dato
@@ -137,6 +137,8 @@ class Game:
                 global pos_saved
                 pos_saved = vec(40, HEIGHT-40)
                 self.playing = False
+                global pagina
+                pagina = 5
                 #print("Se chocó")
 
         #Generar más plataformas aleatoriamente
@@ -185,6 +187,8 @@ class Game:
                     x,y = pg.mouse.get_pos()
                     if x >= x1 and x <= x2 and y >= y1 and y <= y2:
                         self.playing = False
+                        global pagina
+                        pagina = 3
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
                     self.player.jump()
@@ -444,11 +448,12 @@ while g.running:
         g.show_main_menu()
     elif pagina == 2:
         g.new()
-        g.show_go_screen()
     elif pagina == 3:
         g.on_pausa()
     elif pagina == 4:
         g.pantalla_maker()
+    elif pagina == 5:
+        g.show_go_screen()
 #    g.show_main_menu()
 #    g.show_go_screen()
 
