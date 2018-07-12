@@ -60,6 +60,21 @@ class Game:
                 self.all_sprites.add(l)
                 self.letters.add(l)
         elif mapita == 2:
+            for plat in PLATFORM_LIST2:
+                p = Platform(*plat)
+                self.all_sprites.add(p)
+                self.platforms.add(p)
+
+            for coin in COINS_LIST:
+                c = Coin(*coin)
+                self.all_sprites.add(c)
+                self.coins.add(c)
+
+            for letter in LETTERS_LIST:
+                l = Letter(*letter)
+                self.all_sprites.add(l)
+                self.letters.add(l)
+        elif mapita == 3:
             for plat in nMapa:
                 (a,b) = plat
                 p = Platform(a*10,b-10,30,30)
@@ -202,10 +217,17 @@ class Game:
     def draw(self):
         global pos_saved
         global monedas
+        global mapita
         #global dato
         (xa,ya)= pos_saved
-        # Game Loop - draw
-        self.screen.blit(pg.image.load(fondo_mapa1),(0,20))
+        # Game Loop -- draw
+        if mapita == 1:
+            self.screen.blit(pg.image.load(fondo_mapa1),(0,20))
+        elif mapita ==2:
+            self.screen.blit(pg.image.load(fondo_mapa2),(0,20))
+        elif mapita ==3:
+            self.screen.blit(pg.image.load(fondo_mapa3),(0,20))
+
         self.screen.blit(pg.image.load(suelo1_path),(0,560))
         self.screen.blit(pg.image.load(boton_pausa),(930,70))
         #pg.draw.rect(self.screen,(221, 221, 188),(100,10, 800 ,10))
@@ -277,6 +299,8 @@ class Game:
         nCoin = None
         global nLet
         nLet = None
+        global letrasM1
+        letrasM1 = 0
 
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         #Logocondor_img
@@ -388,19 +412,27 @@ class Game:
         fondo_mapas = fondo_mapa1
         posx = 1000
         tam = 780
+        global letrasM1
 
 
         #self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
         global mapita
         if mapita == 1:
             self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
-            pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
+            pg.draw.rect(self.screen,(77, 77, 51),(100,100, 780 ,250))
             self.draw_text("Macchu Picchu", 48, WHITE, 490,120)
         elif mapita == 2:
             #mapa 2
             self.screen.blit(pg.image.load(fondo_mapa2),(0,0))
-            pg.draw.rect(self.screen,(203,232,186),(100,100, 780 ,250))
+            pg.draw.rect(self.screen,(230, 115, 0),(100,100, 780 ,250))
             self.draw_text("Chan Chan", 48, WHITE, 490,120)
+        elif mapita == 3:
+            #mapa 3
+            picture = pg.image.load(fondo_mapa3)
+            picture = pg.transform.scale(picture, (WIDTH, HEIGHT))
+            self.screen.blit(picture,(0,0))
+            pg.draw.rect(self.screen,(38, 115, 38),(100,100, 780 ,250))
+            self.draw_text("Custom", 48, WHITE, 490,120)
         #flechas
         self.screen.blit(pg.image.load(flecha_D),(920,180))
         self.screen.blit(pg.image.load(flecha_I),(15,180))
@@ -423,7 +455,7 @@ class Game:
         global nLet
         global obj
         #cantidad de mapas
-        totalmapas = 2
+        totalmapas = 3
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False

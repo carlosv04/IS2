@@ -167,6 +167,7 @@ sound_path = os.path.join(current_path, "sounds")
 fondo1_path   = os.path.join(imagenes_path, "FONDO1.png")# Path del fondo1
 fondo_mapa1   = os.path.join(imagenes_path, "mapa1.png")
 fondo_mapa2   = os.path.join(imagenes_path, "mapa2.png")
+fondo_mapa3   = os.path.join(imagenes_path, "fondo3.jpg")
 boton_pausa   = os.path.join(imagenes_path, "pause.png")
 boton_inicio = os.path.join(imagenes_path, "Boton1.png")
 boton_maker = os.path.join(imagenes_path, "botonM.png")
