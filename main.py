@@ -31,6 +31,7 @@ class Game:
         contMonedas = 0 
         global contLetras
         contLetras = 0
+        global mapita
         if use_pos_saved:
             self.player.pos = pos_saved
         self.all_sprites.add(self.player)
@@ -38,21 +39,39 @@ class Game:
         suelo = Platform(*PISO)
         self.all_sprites.add(suelo)
         self.piso.add(suelo)
+        print (mapita)
 
-        for plat in PLATFORM_LIST:
-            p = Platform(*plat)
-            self.all_sprites.add(p)
-            self.platforms.add(p)
+        if mapita == 1:
 
-        for coin in COINS_LIST:
-            c = Coin(*coin)
-            self.all_sprites.add(c)
-            self.coins.add(c)
+            for plat in PLATFORM_LIST:
+                p = Platform(*plat)
+                self.all_sprites.add(p)
+                self.platforms.add(p)
 
-        for letter in LETTERS_LIST:
-            l = Letter(*letter)
-            self.all_sprites.add(l)
-            self.letters.add(l)
+            for coin in COINS_LIST:
+                c = Coin(*coin)
+                self.all_sprites.add(c)
+                self.coins.add(c)
+
+            for letter in LETTERS_LIST:
+                l = Letter(*letter)
+                self.all_sprites.add(l)
+                self.letters.add(l)
+        elif mapita == 2:
+            for plat in PLATFORM_LIST2:
+                p = Platform(*plat)
+                self.all_sprites.add(p)
+                self.platforms.add(p)
+
+            for coin in COINS_LIST:
+                c = Coin(*coin)
+                self.all_sprites.add(c)
+                self.coins.add(c)
+
+            for letter in LETTERS_LIST:
+                l = Letter(*letter)
+                self.all_sprites.add(l)
+                self.letters.add(l)
         #pg.mixer.Sound.play(pg.mixer.Sound(sonido_fondo))
         self.run()
 
