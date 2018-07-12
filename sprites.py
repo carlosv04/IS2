@@ -65,6 +65,17 @@ class Platform(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
+class Meta(pg.sprite.Sprite):
+    def __init__(self, x, y, w, h):
+        pg.sprite.Sprite.__init__(self)
+        picture = pg.image.load(meta_img)
+        picture = pg.transform.scale(picture, (w, h))
+        self.image = picture
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+
 class Coin(pg.sprite.Sprite):
     def __init__(self, x, y, w, h):
         pg.sprite.Sprite.__init__(self)

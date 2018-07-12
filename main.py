@@ -24,6 +24,7 @@ class Game:
         self.platforms = pg.sprite.Group()
         self.coins = pg.sprite.Group()
         self.letters = pg.sprite.Group()
+        self.meta = pg.sprite.Group()
         self.player = Player(self)
         global use_pos_saved
         global pos_saved
@@ -100,6 +101,10 @@ class Game:
         suelo = Platform(*PISO)
         self.all_sprites.add(suelo)
         self.piso.add(suelo)
+
+        meta = Meta(9400,400,300,200)
+        self.all_sprites.add(meta)
+        self.meta.add(meta)
         #pg.mixer.Sound.play(pg.mixer.Sound(sonido_fondo))
         self.run()
 
@@ -148,7 +153,7 @@ class Game:
             print(dato)
 
             pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
-            if dato >=9600:
+            if dato >=9300:
                 self.playing = False
 
                 pagina = 1

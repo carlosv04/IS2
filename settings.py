@@ -185,6 +185,7 @@ condor_img = os.path.join(imagenes_path, "condor2.png")
 Logocondor_img = os.path.join(imagenes_path, "condor3.png")
 ladrillo_img = os.path.join(imagenes_path, "ladrillo.jpg")
 clear_icon = os.path.join(imagenes_path, "stop.png")
+meta_img = os.path.join(imagenes_path, "meta.png")
 
 # Colores
 WHITE = (255, 255, 255)
