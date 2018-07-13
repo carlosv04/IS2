@@ -2,6 +2,7 @@ import pygame as pg
 import random
 from settings import *
 from sprites import *
+import urllib.request, json 
 
 pagina = 0
 use_pos_saved = True
@@ -155,7 +156,6 @@ class Game:
             pg.draw.rect(self.screen,(255, 0, 0),(100,10, dato*8/100 ,10))
             if dato >=9300:
                 self.playing = False
-
                 pagina = 1
         # Lógica cuando muere el jugador
         hitsLateral = pg.sprite.spritecollide(self.player, self.platforms, False)
@@ -166,16 +166,8 @@ class Game:
                 global pos_saved
                 pos_saved = vec(40, HEIGHT-40)
                 self.playing = False
-                #global pagina
                 pagina = 5
-                #print("Se chocó")
 
-        #Generar más plataformas aleatoriamente
-  #      while len(self.platforms) < 7:
-   #         width = random.randrange(50, 100)
-    #        p = Platform(random.randrange(WIDTH, WIDTH*2), random.randrange(HEIGHT*3/4, HEIGHT*3/4 + width), width, 20)
-     #       self.platforms.add(p)
-      #      self.all_sprites.add(p)
 
         hitsCoins = pg.sprite.spritecollide(self.player, self.coins, False)
         hitsLetters = pg.sprite.spritecollide(self.player, self.letters, False)
@@ -183,10 +175,11 @@ class Game:
         global contMonedas
         pg.draw.rect(self.screen,WHITE,(0,0, 100 ,20))
         self.draw_text("Monedas: {}/{}".format(contMonedas, len(self.coins)+ contMonedas), 16, BLACK, 40,0)
-
+        global monedasTotal
         if hitsCoins:
             hitsCoins[0].kill()
             contMonedas += 1
+            monedasTotal += 1
             print(contMonedas)
             pg.mixer.Sound.play(pg.mixer.Sound(sonido_coin))
         global contLetras
@@ -309,6 +302,12 @@ class Game:
         nLet = None
         global letrasM1
         letrasM1 = 0
+        global monedasTotal
+        monedasTotal = 0
+
+        #with urllib.request.urlopen("http://127.0.0.1:5002/partida") as url:
+        #data = json.loads(url.read().decode())
+        #print(data)
 
         self.screen.blit(pg.image.load(fondo1_path),(0,0))
         #Logocondor_img
@@ -421,7 +420,7 @@ class Game:
         posx = 1000
         tam = 780
         global letrasM1
-
+        global monedasTotal
 
         #self.screen.blit(pg.image.load(fondo_mapa1),(0,0))
         global mapita
@@ -448,6 +447,12 @@ class Game:
         picture = pg.image.load(boton_maker)
         picture = pg.transform.scale(picture, (300, 80))
         self.screen.blit(picture,(350,440))
+        #monedas 
+        picture = pg.image.load(moneda_img)
+        picture = pg.transform.scale(picture, (60, 60))
+        self.screen.blit(picture,(15,15))
+        pg.draw.rect(self.screen,(0, 0, 0),(80,35, 60 ,30))
+        self.draw_text("x {}".format(monedasTotal), 30, WHITE, 100,33)
         #pg.draw.rect(self.screen,(68, 204, 0),(350,450, 300 ,60))
         self.draw_text("Maker", 48, WHITE, 500,450)
 
